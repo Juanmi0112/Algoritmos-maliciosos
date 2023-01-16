@@ -1,0 +1,40 @@
+#1 
+
+import sched, time, shutil
+
+def copy_file():
+    # Ruta de la carpeta de origen
+    src = "ruta/de/la/carpeta/origen/archivo.txt"
+    # Ruta de la carpeta de destino
+    dst = "ruta/de/la/carpeta/destino/archivo.txt"
+    shutil.copy2(src, dst)
+    print("Archivo copiado con éxito.")
+
+s = sched.scheduler(time.time, time.sleep)
+
+# Fecha y hora en la que deseas copiar el archivo
+# formato (año, mes, día, hora, minuto, segundo)
+execute_time = (2022, 12, 25, 12, 0, 0)
+
+s.enterabs(time.mktime(execute_time), 1, copy_file, ())
+s.run()
+
+#2 NOTA: Agregar el script en el registro de windows para que se pueda hacer (tengo foto en el cel de los pasos)
+
+import ctypes
+
+# Ruta de la imagen que deseas usar como fondo de pantalla
+ruta_imagen = "ruta/de/la/imagen/wallpaper.jpg"
+
+ctypes.windll.user32.SystemParametersInfoW(20, 0, ruta_imagen , 0)
+print("Fondo de pantalla cambiado con éxito.")
+
+# Define la nueva fecha y hora
+new_date = (2022, 12, 25, 12, 0, 0, 0, 0)
+
+# Crea una estructura SYSTEMTIME para almacenar la nueva fecha y hora
+date = ctypes.c_long * 8
+new_time = date(*new_date)
+
+# Usa la función SetLocalTime para establecer la nueva fecha y hora
+ctypes.windll.kernel32.SetLocalTime(ctypes.byref(new_time))
