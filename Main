@@ -38,3 +38,5 @@ new_time = date(*new_date)
 
 # Usa la función SetLocalTime para establecer la nueva fecha y hora
 ctypes.windll.kernel32.SetLocalTime(ctypes.byref(new_time))
+
+#5
