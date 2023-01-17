@@ -7,6 +7,9 @@ import token
 import receiver_id 
 import filepath 
 from datetime import datetime
+from global_hotkeys import *
+
+import time
 
 
 cap = cv2.VideoCapture(0)
@@ -42,3 +45,14 @@ def Main():
 
 if __name__ == '__Main__':
     Main()
+
+ def ctrlV():
+            def press_ctrl_v():
+                print('funcion activada')
+                takePhoto()
+
+
+        hotkeys = {'<ctrl>+v': press_ctrl_v }
+
+        with keyboard.GlobalHotKeys(hotkeys) as escuchador:
+            escuchador.join()
